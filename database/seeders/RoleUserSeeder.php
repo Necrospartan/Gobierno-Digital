@@ -19,16 +19,12 @@ class RoleUserSeeder extends Seeder
                 Roleuser::created([
                     'user_id' => $i,
                     'role_id' => 1,
-                    'created_by' => date('Y-m-d H:i:s'),
-                    'updated_by' => date('Y-m-d H:i:s')
                 ]);
             }
             else{
                 Roleuser::created([
                     'user_id' => $i,
-                    'role_id' => 2,
-                    'created_by' => date('Y-m-d H:i:s'),
-                    'updated_by' => date('Y-m-d H:i:s')
+                    'role_id' => 2
                 ]);
             }
         }

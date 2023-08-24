@@ -19,9 +19,7 @@ class UsersSeeder extends Seeder
             User::created([
                 'name' => 'Usuario' . $i,
                 'email' => 'usuario' . $i . '@example.com',
-                'password' => Hash::make('12345abc'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'password' => Hash::make('12345abc')
             ]);
         }
     }

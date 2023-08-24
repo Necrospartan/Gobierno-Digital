@@ -17,16 +17,12 @@ class RolesSeeder extends Seeder
         Role::create([
             'name' => 'administrador',
             'slug' => '',
-            'description' => 'Administrador del sistema',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'description' => date('Y-m-d H:i:s')
         ]);
         Role::create([
             'name' => 'usuario',
             'slug' => '',
-            'description' => 'Usuario del sistema',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'description' => date('Y-m-d H:i:s')
         ]);
     }
 }
