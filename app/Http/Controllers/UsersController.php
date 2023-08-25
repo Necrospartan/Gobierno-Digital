@@ -170,15 +170,13 @@ class UsersController extends Controller
     //function to delete user
     public function delete(Request $request){
         try{
-            $rules = [
-                'id' => 'required | integer | exists:App\Models\users, id',
-            ];
-            $messages = [
-                'id.required' => 'Id is required',
-                'id.integer' => 'Id must be an integer',
-                'id.exists' => 'Id not found',
-            ];
-            $validator = Validator::make($request->all(), $rules, $messages);
+            $validator = Validator::make(['id' => $request->id], [
+                'id' => [ 
+                    'required',
+                    'numeric',
+                    'exists:App\Models\User,id'
+                ]
+            ]);
             if($validator->fails()){
                 return [
                     'status' => false,
