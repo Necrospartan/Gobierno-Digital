@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         for($i = 1; $i <= 15; $i++) {
-            User::created([
+            User::insert([
                 'name' => 'Usuario' . $i,
                 'email' => 'usuario' . $i . '@example.com',
                 'password' => Hash::make('12345abc')

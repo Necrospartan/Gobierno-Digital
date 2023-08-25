@@ -23,6 +23,6 @@ class Role extends Model
 
     protected $data = [
         'created_at',
-        'datetime',
+        'updated_at',
     ];
 }

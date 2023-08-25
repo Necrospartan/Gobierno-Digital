@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 Route::group([
-    'prefix' => 'user',
-    'controller' => 'UserController',
+    'prefix' => 'users',
+    'controller' => App\Http\Controllers\UsersController::class,
 ], function () {
     Route::post('create', 'create');
-    Route::get('read/{id}', 'read');
+    Route::get('read/{id?}', 'read');
     Route::post('update', 'update');
-    Route::post('delete', 'delete');
+    Route::delete('delete/{id}', 'delete');
 });

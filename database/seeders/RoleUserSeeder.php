@@ -16,13 +16,13 @@ class RoleUserSeeder extends Seeder
     {
         for ($i = 1; $i <= 15; $i++) {
             if ($i <= 2) {
-                Roleuser::created([
+                Roleuser::insert([
                     'user_id' => $i,
                     'role_id' => 1,
                 ]);
             }
             else{
-                Roleuser::created([
+                Roleuser::insert([
                     'user_id' => $i,
                     'role_id' => 2
                 ]);

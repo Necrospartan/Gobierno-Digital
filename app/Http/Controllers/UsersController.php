@@ -17,8 +17,8 @@ class UsersController extends Controller
         try{
             $rules = [
                 'name' => 'required | string | max:191',
-                'email' => 'required | email | max:191 |unique:users, email',
-                'password' => 'required | string | min:100'
+                'email' => 'required | email | max:191 |unique:App\Models\User,email',
+                'password' => 'required | string | max:191'
             ];
             $messages = [
                 'name.required' => 'Name is required',
@@ -38,35 +38,33 @@ class UsersController extends Controller
             $validator = Validator::make($request->all(), $rules, $messages);
             if($validator->fails()){
                 return [
+                    'validation' => 'failed',
                     'status' => false,
                     'error' => $validator->errors()
                 ];
             }
 
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($user->password);
-            $user->created_at = date('Y-m-d H:i:s');
-            $user->updated_at = date('Y-m-d H:i:s');
-            $user->save();
-
-            $role_user = new Roleuser;
-            $role_user->user_id = $user->id;
-            $role_user->role_id = $request->role_id;
-            $role_user->created_at = date('Y-m-d H:i:s');
-            $role_user->updated_at = date('Y-m-d H:i:s');
-            $role_user->save();
+            $user = User::insertGetId([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+            $role_user = Roleuser::insert([
+                'user_id' => $user,
+                'role_id' => $request->role_id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
 
             return response()->json([
                 'status' => true,
                 'message' => 'User created successfully',
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => $user->password
             ]);
         } catch(\Exception $e){
             return response()->json([
+                'Exception' => 'Exception',
                 'status' => false,
                 'message' => $e->getMessage()
                 ], 500);
@@ -116,10 +114,10 @@ class UsersController extends Controller
     public function update(Request $request){
         try{
             $rules = [
-                'id' => 'required | integer | exists:users, id',
+                'id' => 'required | integer | exists:App\Models\User,id',
                 'name' => 'required | string | max:191',
                 'email' => 'required | email | max:191',
-                'password' => 'required | string | min:100'
+                'password' => 'required | string | max:191'
             ];
             $messages = [
                 'id.required' => 'Id is required',
@@ -145,17 +143,15 @@ class UsersController extends Controller
 
             $user = User::find($request->id);
             if($user){
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->password = Hash::make($user->password);
-                $user->updated_at = date('Y-m-d H:i:s');
-                $user->save();
+                User::where('id', $request->id)->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
                 return response()->json([
                     'status' => true,
-                    'message' => 'User updated successfully',
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'password' => $user->password
+                    'message' => 'User updated successfully'
                 ]);
             } else {
                 return response()->json([
@@ -165,6 +161,7 @@ class UsersController extends Controller
             }
         } catch(\Exception $e){
             return response()->json([
+                'Exception'=> 'Exception',
                 'status' => false,
                 'message' => $e->getMessage()
                 ], 500);
@@ -174,7 +171,7 @@ class UsersController extends Controller
     public function delete(Request $request){
         try{
             $rules = [
-                'id' => 'required | integer | exists:users, id',
+                'id' => 'required | integer | exists:App\Models\users, id',
             ];
             $messages = [
                 'id.required' => 'Id is required',

@@ -33,4 +33,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed'
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
+    ];
 }
