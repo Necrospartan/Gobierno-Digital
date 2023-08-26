@@ -85,14 +85,14 @@ En el encontraras la pruba para cada una de las funciones implementadas en esta 
 ***Uso del postman***
 En la carpeta `prueba administrador``, se encontra las pruebas antes mensionadas.
 
-<li>La prueba `login` se encuentra precargada con informacion correspondente a un usuario con privilegio de administror, esta funcion regresara su respectivo `Token`.</li>
+* La prueba `login` se encuentra precargada con informacion correspondente a un usuario con privilegio de administror, esta funcion regresara su respectivo `Token`.
 
-<li>Prueba de `create`, para esta prueba tendremos que copiar el token del login y pegarlo en la pestaña Authorization y ejecutar la prueba, si todo salio de manera corecta regresara un mensaje de que el usuario se agrego de manera correcta.</li>
+* Prueba de `create`, para esta prueba tendremos que copiar el token del login y pegarlo en la pestaña Authorization y ejecutar la prueba, si todo salio de manera corecta regresara un mensaje de que el usuario se agrego de manera correcta.
 
-<li>Prueba de `read_id`y `read_all`, cada una regresara la informacion correspondiente.</li>
+* Prueba de `read_id`y `read_all`, cada una regresara la informacion correspondiente.
 
-<li>Prueba de `update`, de manera similar a la pruba `create` necesitara que proporciones el `Token` del login. Si la actualizacion salio de manera correcta regresara un mensaje de exito.</li>
+* Prueba de `update`, de manera similar a la pruba `create` necesitara que proporciones el `Token` del login. Si la actualizacion salio de manera correcta regresara un mensaje de exito.
 
-<li>Prueba de `delete`, similar a las anteriores se necesitara que se proporcione el `Token` del inicio de seccion. Si el borrdo del usuario se realiza de  manera correcta regresara un mensaje de exito.</li>
+* Prueba de `delete`, similar a las anteriores se necesitara que se proporcione el `Token` del inicio de seccion. Si el borrdo del usuario se realiza de  manera correcta regresara un mensaje de exito.
 
 En la carpeta `prueba usuario`, se encontrar las mismas pruebas, pero ahora el login contiene la infromacion de inicio de un usuario sin provilegio de administrador. Las pruebas se realizar de manera identica a las del administrador. La unica diferencia sera que en todas regresara un mensaje `No tienes permiso de acceder a esta ruta`, salvo la de `read`.
