@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\User;
 use App\Models\Roleuser;
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use JWTAuth;
+use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
